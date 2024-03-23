@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Box</title>
+    <link rel="stylesheet" href="chat.css">
+    <audio id="notificationSound" src="noti.wav" preload="auto"></audio>
+    <head>
+<body>
+    <nav>
+        <img class="logo" src="phono.png" alt="">
+    </nav>
+    <div class="container" id="message">
+        <div class="message right"></div>
+        <div class="message left"></div>
+    </div>
+    <div class="send">
+        <form action="#" id="send-container">
+        <input type="text" name="messageInp" id="messageInp">
+        <button class="btn" type="submit">Send</button>
+        </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+<!-- <script defer src="socket.io.js"></script> -->
+<!-- <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script> -->
+<script>
+    const socket = io();
+
+    const form = document.getElementById('send-container');
+    const input = document.getElementById('messageInp');
+    const messages = document.getElementById('message');
+
+    form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (input.value) {
+        socket.emit('chat message', {
+            message: input.value,
+            user: socket.id
+    })
+        input.value = '';
+    }
+    });
+
+    socket.on('chat message', (msg) => {
+        console.log("mesaage: ", msg.message.message)
+    const item = document.createElement('div'); // <li>{msg}</li>
+    const messageClass = (msg.id === socket.id ? 'right' : 'left');
+    item.textContent = msg.message.user + ':' + msg.message.message;
+    item.classList.add(messageClass);
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+</script>
+</body>
+</html>

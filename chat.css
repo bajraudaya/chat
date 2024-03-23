@@ -1,0 +1,79 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-image: linear-gradient(rgb(92, 100, 221), rgb(109, 39, 233));
+}
+
+.logo {
+    display: block;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+}
+
+.container {
+    max-width: 955px;
+    border: 2px solid black;
+    padding: 33px;
+    margin-bottom: 23px;
+    overflow-y: auto;
+    margin: auto; /* Keep this line for centering */
+    height: 60vh;
+}
+
+.message {
+    background-color: rgb(180, 177, 177);
+    width: 24%;
+    padding: 10px;
+    margin: 17px 12px; /* Corrected syntax for margin */
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.left:nth-child(-n+2),
+.right:nth-child(-n+2) {
+    display: none; /* Hide the first two messages with .left and .right */
+}
+
+.left {
+    float: left;
+    clear: both;
+}
+
+.right {
+    float: right;
+    clear: both;
+}
+
+#send-container {
+    text-align: center;
+    display: block;
+    margin: auto;
+    max-width: 985px;
+    width: 100%;
+}
+
+#messageInp {
+    width: 92%;
+    border: 2px solid black; /* Corrected property */
+    border-radius: 6px;
+    height: 34px;
+}
+
+.btn {
+    cursor: pointer;
+    border: 2px solid black;
+    border-radius: 6px;
+    height: 34px;
+    background-color: red; /* Green background color */
+    color: #fff; /* White text color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn:hover {
+    background-color: rgba(198, 204, 239, 0); /* Darker green on hover */
+    color: #001bb4;
+    color: #fff;
+}
